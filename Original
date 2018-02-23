@@ -21,7 +21,7 @@ System.out.print("\nEnter your base: ");
 int numberBase = input.nextInt();
 
 //Outputs the number converted to the base array and the method
-int [] conversion = new int[numberEntered/numberBase];
+int [] conversion = new int[(numberEntered/numberBase)+1];
 Conversion(numberEntered,numberBase,conversion);
 
 //Outputs the array with the converted numbers
