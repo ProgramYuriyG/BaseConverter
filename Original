@@ -1,0 +1,63 @@
+/*
+In mathematics, a base is the number of different digits or combinations of digits and letters 
+that a system of counting uses to represent numbers. 
+For example, the most common base used today is the decimal system because "dec" means 1, 
+it uses the 10 digits from 0 to 9. A decimal number has base 10, a binary has base 2, an octal has base 8,etc.
+Given a non-negative interger & a base as input, create a program to convert the given decimal into the corresponding base.
+*/
+
+import java.util.*;
+public class BaseConverter{
+//Main method
+public static void main(String[]args){
+Scanner input = new Scanner(System.in);
+
+//Asks the user for their number
+System.out.print("Enter your positive interger number: ");
+int numberEntered = input.nextInt();
+
+//Asks the user for their base
+System.out.print("\nEnter your base: ");
+int numberBase = input.nextInt();
+
+//Outputs the number converted to the base array and the method
+int [] conversion = new int[numberEntered/numberBase];
+Conversion(numberEntered,numberBase,conversion);
+
+//Outputs the array with the converted numbers
+int a = 0;
+for(int x=conversion.length-1;x>-1;x--){
+//makes it so that it starts printing out numbers starting with the one thats not 0
+   //if the converted number starts with 0 then skip it
+   if(conversion[x] == 0&&a==0){
+      continue;
+   }
+   //if the converted number does not start with 0 then start the printing
+   else if(conversion[x]>0 && a==0){
+   a++;
+   }
+   
+   System.out.print(conversion[x]);
+   
+
+}}
+
+//Conversion Method
+public static int[] Conversion(int number, int base, int []conversion){
+String conversionNumber = "";
+int baseNum = 0;
+int y = 0;
+   //when x is equal to number but greater than 0, we divide it and check for remainders
+   for(int x=number; x>0; x=baseNum,y++){
+   conversion[y] = (baseNum%base);
+   baseNum = (x/base);
+   }
+//returns the array
+return conversion;
+
+}}
+
+
+
+
+
