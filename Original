@@ -45,7 +45,7 @@ for(int x=conversion.length-1;x>-1;x--){
 //Conversion Method
 public static int[] Conversion(int number, int base, int []conversion){
 String conversionNumber = "";
-int baseNum = 0;
+int baseNum = number;
 int y = 0;
    //when x is equal to number but greater than 0, we divide it and check for remainders
    for(int x=number; x>0; x=baseNum,y++){
@@ -55,8 +55,8 @@ int y = 0;
 //returns the array
 return conversion;
 
-
 }}
+
 
 
 
