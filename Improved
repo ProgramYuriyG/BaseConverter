@@ -1,0 +1,112 @@
+/*
+In mathematics, a base is the number of different digits or combinations of digits and letters 
+that a system of counting uses to represent numbers. 
+For example, the most common base used today is the decimal system because "dec" means 1, 
+it uses the 10 digits from 0 to 9. A decimal number has base 10, a binary has base 2, an octal has base 8,etc.
+Given a non-negative interger & a base as input, create a program to convert the given decimal into the corresponding base.
+*/
+
+import java.util.*;
+public class BaseConverter{
+//Main method
+public static void main(String[]args){
+Scanner input = new Scanner(System.in);
+
+//Asks the user for their number
+System.out.print("Enter your positive interger number: ");
+int numberEntered = input.nextInt();
+
+//Asks the user for their base
+System.out.print("\nEnter your base: ");
+int numberBase = input.nextInt();
+System.out.println();
+//If the number entered is negative or 0
+if(numberEntered<1){
+System.out.println("Invalid Number");
+System.exit(1);
+}
+//If the base entered is negative or 0
+if(numberBase <2){
+System.out.println("Invalid Base");
+System.exit(1);
+}
+//Outputs the number converted to the base array and the method
+int [] conversion = new int[(numberEntered/numberBase)+1];
+
+//Runs the Conversion Method, creates the values in the array
+Conversion(numberEntered,numberBase,conversion);
+//Runs the Output Method; outputs the array
+Output(conversion, numberBase);
+
+}
+
+//Conversion Method
+public static int[] Conversion(int number, int base, int []conversion){
+int baseNum = number;
+int y = 0;
+//Creates the letters and the characters  for them
+char [] letters = new char[26];
+for(int a = 0;a<letters.length;a++){
+letters[a] = (char)('A'+a);
+} 
+
+   //if base is greater than or equal to 11
+   if(base>10){
+   for(int x=number; x>0; x=baseNum,y++){
+   conversion[y] = (baseNum%base);
+   baseNum = (x/base);
+      if(conversion[y]>=10){
+      conversion[y] = letters[(conversion[y])-10];
+      }
+   }
+   }
+   //If the base is less than 11
+   else{
+   //Note: when x is equal to number but greater than 0, we divide it and check for remainders
+   for(int x=number; x>0; x=baseNum,y++){
+   conversion[y] = (baseNum%base);
+   baseNum = (x/base);
+   }
+   
+   }
+//returns the array
+return conversion;
+
+}
+
+//Method for outputting the array of int
+public static void Output(int [] conversion, int base){
+
+//Outputs the array with the converted numbers
+int a = 0;
+for(int x=conversion.length-1;x>-1;x--){
+//makes it so that it starts printing out numbers starting with the one thats not 0
+
+   //if the converted number starts with 0 then skip it
+   if(a==0 && conversion[x] == 0){
+      continue;
+   }
+   //if the converted number does not start with 0 then start the printing
+   else if(a==0 && conversion[x]>0){
+   a++;
+   }
+   
+   //If the base is greater than 10 then outputs with the letters
+   if(base>=11){
+   
+   if((conversion[x]>9)){
+   System.out.print((char)conversion[x]);
+   }else{
+   System.out.print(conversion[x]);
+   }
+   }else{
+   System.out.print(conversion[x]);
+   }
+      
+}}
+
+
+}
+
+
+
