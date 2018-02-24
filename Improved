@@ -44,10 +44,15 @@ Output(conversion, numberBase);
 public static int[] Conversion(int number, int base, int []conversion){
 int baseNum = number;
 int y = 0;
-//Creates the letters and the characters  for them
+//Creates the Capital letters and the characters  for them
 char [] letters = new char[26];
 for(int a = 0;a<letters.length;a++){
 letters[a] = (char)('A'+a);
+} 
+//Creates the Lower case letters and the characters  for them
+char [] lettersLower = new char[26];
+for(int a = 0;a<letters.length;a++){
+lettersLower[a] = (char)('a'+a);
 } 
 
    //if base is greater than or equal to 11
@@ -55,8 +60,10 @@ letters[a] = (char)('A'+a);
    for(int x=number; x>0; x=baseNum,y++){
    conversion[y] = (baseNum%base);
    baseNum = (x/base);
-      if(conversion[y]>=10){
+      if(conversion[y]>=10 && conversion[y]<=35){
       conversion[y] = letters[(conversion[y])-10];
+      }else if(conversion[y]>35){
+      conversion[y] = lettersLower[(conversion[y])-36];
       }
    }
    }
@@ -94,7 +101,7 @@ for(int x=conversion.length-1;x>-1;x--){
    //If the base is greater than 10 then outputs with the letters
    if(base>=11){
    
-   if((conversion[x]>9)){
+   if(conversion[x]>9){
    System.out.print((char)conversion[x]);
    }else{
    System.out.print(conversion[x]);
@@ -102,11 +109,10 @@ for(int x=conversion.length-1;x>-1;x--){
    }else{
    System.out.print(conversion[x]);
    }
-      
+   
+     
 }}
 
 
 }
-
-
 
